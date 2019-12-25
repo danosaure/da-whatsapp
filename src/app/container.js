@@ -1,13 +1,28 @@
 import {
-    boundComponent
+    boundComponent,
+    useDispatch,
+    useSelector
 } from '@quoin/react-utils';
 
 import Component from './component';
-import { orchestrators } from './flux';
+import {
+    orchestrators,
+    selectors
+} from './flux';
 
 const getComponentProps = (props) => {
+    const dispatch = useDispatch();
+
+    const tokens = useSelector(selectors.tokens);
+
     return {
+        fileSelected: (file) => orchestrators.fileSelected(dispatch, file),
+        tokens
     };
 };
 
-export default boundComponent(Component, getComponentProps);
+const propsType = {};
+
+const defaultProps = {};
+
+export default boundComponent(Component, getComponentProps, propsType, defaultProps);

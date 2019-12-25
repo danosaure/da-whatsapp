@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     devtool: 'source-map',
+    cache: false,
     entry: {
         app: './src/index.jsx',
     },
@@ -30,5 +31,8 @@ module.exports = {
                 }
             }
         }]
+    },
+    optimization: {
+        minimize: process.env.NODE_ENV !== 'development'
     }
 };
