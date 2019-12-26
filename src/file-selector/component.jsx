@@ -1,4 +1,5 @@
 import {
+    Alert,
     FormControl,
     Panel
 } from 'react-bootstrap';
@@ -11,10 +12,16 @@ import {
 import { NAME } from './constants';
 
 const Component = (props) => {
+    const selectFilePrompt = props.users && props.users.length
+        ? null
+        : <Alert>Select a file</Alert>
+    ;
+
     return (
-        <Panel>
+        <Panel className="da-whatsapp-file-selector">
             <Panel.Heading>WhatsApp chat log file</Panel.Heading>
             <Panel.Body>
+                {selectFilePrompt}
                 <FormControl type="file" accept=".txt" onChange={(e) => props.onChange(e.target.files[0])} />
             </Panel.Body>
         </Panel>

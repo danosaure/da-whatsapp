@@ -16,6 +16,7 @@ import { INIT_TYPE } from './../constants';
 import { ATTRIBUTES } from './constants';
 import namespace from './namespace';
 import tokenizeChat from './tokenize-chat';
+import usersFromTokens from './users-from-tokens';
 
 const actions = namespacedActions(namespace, [
     'SET_CONTENT',
@@ -34,18 +35,9 @@ export const orchestrators = Object.freeze({
         const fileReader = new FileReader();
         fileReader.onloadend = (e) => {
             const content = fileReader.result;
-            const tokens = tokenizeChat(content);
 
-            const users = tokens.reduce(
-                (users, token) => {
-                    if (users.indexOf(token.user) === -1) {
-                        return users.concat(token.user).sort();
-                    } else {
-                        return users;
-                    }
-                },
-                []
-            );
+            const tokens = tokenizeChat(content);
+            const users = usersFromTokens(tokens);
 
             batch(() => {
                 dispatch(actionCreators.setContent(tokens));
@@ -54,6 +46,10 @@ export const orchestrators = Object.freeze({
             });
         };
         fileReader.readAsText(file);
+    },
+
+    userSelected: (dispatch, user) => {
+        dispatch(actionCreators.setUser(user));
     }
 });
 
@@ -68,11 +64,11 @@ export const reducers = concatenateReducers([{
     reducer: (state, action) => setSubstateAttribute(state, namespace, ATTRIBUTES.USER, action.payload.name)
 }, {
     actions: [ actions.SET_USERS ],
-    reducer: (state, action) => setSubstateAttribute(state, namespace, ATTRIBUTES.USERS, action.payload.users)
+    reducer: (state, action) => setSubstateAttribute(state, namespace, ATTRIBUTES.USERS, fromJS(action.payload.users))
 }]);
 
 export const selectors = Object.freeze({
     tokens: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.TOKENS, fromJS([])).toJS(),
-    user: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.USER, null).toJS(),
+    user: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.USER, null),
     users: (state) => getSubstateAttribute(state, namespace, ATTRIBUTES.USERS, fromJS([])).toJS()
 });

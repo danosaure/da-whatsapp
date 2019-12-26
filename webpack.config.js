@@ -8,7 +8,7 @@ module.exports = {
         app: './src/index.jsx',
     },
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'docs'),
         filename: '[name].min.js'
     },
     resolve: {

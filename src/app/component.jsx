@@ -10,7 +10,9 @@ import {
     PropTypes
 } from '@quoin/react-utils';
 
+import ChatLog from './../chat-log';
 import FileSelector from './../file-selector';
+import UserSelector from './../user-selector';
 
 import { NAME } from './constants';
 
@@ -24,11 +26,16 @@ const Component = (props) => {
             </Row>
 
             <Row>
-                <Col xs={4}>
-                    <FileSelector onChange={props.fileSelected} />
+                <Col xs={6}>
+                    <FileSelector onChange={props.fileSelected} users={props.users} />
                 </Col>
-                <Col xs={8}>
-                    Chat will go here
+                <Col xs={6}>
+                    <UserSelector onChange={props.userSelected} users={props.users} user={props.user} />
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <ChatLog user={props.user} tokens={props.tokens} />
                 </Col>
             </Row>
         </Grid>

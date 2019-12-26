@@ -4,9 +4,9 @@
   "description": "Quick chat export reader",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf build",
-    "cp": "cp src/index.html node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/react/umd/react.production.min.js build/",
-    "less": "lessc src/style.less build/style.css",
+    "clean": "rimraf docs",
+    "cp": "cp src/index.html node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/react/umd/react.production.min.js docs/",
+    "less": "lessc src/style.less docs/style.css",
     "prebuild": "npm run clean",
     "build": "webpack",
     "postbuild": "npm run cp && npm run less",

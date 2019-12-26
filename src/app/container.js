@@ -14,10 +14,15 @@ const getComponentProps = (props) => {
     const dispatch = useDispatch();
 
     const tokens = useSelector(selectors.tokens);
+    const user = useSelector(selectors.user);
+    const users = useSelector(selectors.users);
 
     return {
         fileSelected: (file) => orchestrators.fileSelected(dispatch, file),
-        tokens
+        tokens,
+        user,
+        userSelected: (user) => orchestrators.userSelected(dispatch, user),
+        users
     };
 };
 
