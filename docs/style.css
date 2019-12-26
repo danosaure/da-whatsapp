@@ -1,0 +1,38 @@
+.da-whatsapp-date-group {
+  margin-top: 10px;
+}
+.da-whatsapp-date-group > .date {
+  text-align: center;
+  background-color: lightblue;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+.da-whatsapp-user-chat > div {
+  margin-top: 1px;
+  border-style: solid;
+  border-width: thin;
+}
+.da-whatsapp-user-chat > div.main-user {
+  background-color: #fc9;
+  border-color: #fc0;
+}
+.da-whatsapp-user-chat > div > .name {
+  display: none;
+}
+.da-whatsapp-user-group {
+  margin-top: 10px;
+}
+.da-whatsapp-user-group .da-whatsapp-user-chat:first-child > div {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.da-whatsapp-user-group .da-whatsapp-user-chat:first-child > div > .name {
+  display: block;
+}
+.da-whatsapp-user-group .da-whatsapp-user-chat:last-child > div {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
