@@ -1,7 +1,7 @@
 import groupByDate from './group-by-date';
 import groupByUser from './group-by-user';
 
-const PARTS_REGEXP = /^\[(\d+\/\d+\/\d+), (\d+:\d+:\d+ ..)\] (.*):\s+(.*)/;
+const PARTS_REGEXP = /^\[(\d+\/\d+\/\d+), (\d+:\d+:\d+ ..)\] (.*?):\s+(.*)/;
 
 export default (chat) => {
     const tokens = chat.split('\n').reduce(

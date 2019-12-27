@@ -12,7 +12,7 @@ import {
 import { NAME } from './constants';
 
 const Component = (props) => {
-    const selectFilePrompt = props.users && props.users.length
+    const selectFilePrompt = (props.users && props.users.length) || props.isLoading
         ? null
         : <Alert>Select a file</Alert>
     ;

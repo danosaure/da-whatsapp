@@ -12,10 +12,10 @@ import {
 import { NAME } from './constants';
 
 const Component = (props) => {
-    if (props.users && props.users.length) {
-        const selectUserPrompt = props.user
+    if (props.users && props.users.length && !props.isLoading) {
+        const selectUserPrompt = props.user || props.userSelecting
             ? null
-            : <Alert>Select main user</Alert>
+            : <Alert bsStyle="info">Select main user</Alert>
         ;
 
         const options = [

@@ -14,25 +14,33 @@
   margin-top: 1px;
   border-style: solid;
   border-width: thin;
+  overflow: auto;
 }
-.da-whatsapp-user-chat > div.main-user {
-  background-color: #fc9;
-  border-color: #fc0;
+.da-whatsapp-user-chat > div.user-0 {
+  background-color: #9cf;
+  border-color: #69c;
+}
+.da-whatsapp-user-chat > div.user-1 {
+  background-color: #ccf;
+  border-color: #99f;
+}
+.da-whatsapp-user-chat > div.main-user > .name {
+  display: none;
 }
 .da-whatsapp-user-chat > div > .name {
   display: none;
 }
-.da-whatsapp-user-group {
-  margin-top: 10px;
-}
-.da-whatsapp-user-group .da-whatsapp-user-chat:first-child > div {
+.da-whatsapp-user-chat:first-child > div {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.da-whatsapp-user-group .da-whatsapp-user-chat:first-child > div > .name {
+.da-whatsapp-user-chat:first-child > div > .name {
   display: block;
 }
-.da-whatsapp-user-group .da-whatsapp-user-chat:last-child > div {
+.da-whatsapp-user-chat:last-child > div {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+.da-whatsapp-user-group {
+  margin-top: 10px;
 }

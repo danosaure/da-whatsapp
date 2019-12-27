@@ -12,7 +12,7 @@ import UserGroup from './../user-group';
 import { NAME } from './constants';
 
 const Component = (props) => {
-    const userGroups = props.dateGroup.logs.map((userGroup, index) => <UserGroup key={index} userGroup={userGroup} user={props.user} />);
+    const userGroups = props.dateGroup.logs.map((userGroup, index) => <UserGroup key={index} userGroup={userGroup} user={props.user} users={props.users} />);
 
     return (
         <div className="da-whatsapp-date-group">
@@ -24,7 +24,8 @@ const Component = (props) => {
 
 Component.propTypes = {
     dateGroup: PropTypes.object,
-    user: PropTypes.string
+    user: PropTypes.string,
+    users: PropTypes.array
 };
 
 Component.displayName = NAME;

@@ -3,14 +3,44 @@
         margin-top: 1px;
         border-style: solid;
         border-width: thin;
+        overflow: auto;
+
+        &.user-0 {
+            background-color: #9cf;
+            border-color: #69c;
+        }
+
+        &.user-1 {
+            background-color: #ccf;
+            border-color: #99f;
+        }
 
         &.main-user {
-            background-color: #fc9;
-            border-color: #fc0;
+            > .name {
+                display: none;
+            }
         }
 
         > .name {
             display: none;
+        }
+    }
+
+    &:first-child {
+        > div {
+            border-top-left-radius: @radius-size;
+            border-top-right-radius: @radius-size;
+
+            > .name {
+                display: block;
+            }
+        }
+    }
+
+    &:last-child {
+        > div {
+            border-bottom-left-radius: @radius-size;
+            border-bottom-right-radius: @radius-size;
         }
     }
 }
