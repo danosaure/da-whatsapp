@@ -19,7 +19,7 @@ import UserSelector from './../user-selector';
 import { NAME } from './constants';
 
 const Component = (props) => {
-    console.log("props=", props);
+    // console.log("props=", props);
 
     let bottomContent;
 

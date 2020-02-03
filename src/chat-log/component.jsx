@@ -17,7 +17,22 @@ const Component = (props) => {
     } else if (props.userSelecting) {
         return <Alert bsStyle="info">New user selecting, resorting...</Alert>;
     } else if (props.tokens && props.tokens.length) {
-        return props.tokens.map((dateGroup, index) => <DateGroup key={index} dateGroup={dateGroup} user={props.user} users={props.users} />);
+        return props.tokens.map((dateGroup, index, array) => {
+            const previous = index ? array[index - 1] : null;
+            const next = (index < array.length - 1) ? array[index + 1] : null;
+            const isLast = index === array.length - 1;
+            return (
+                <DateGroup
+                    key={index}
+                    dateGroup={dateGroup}
+                    user={props.user}
+                    users={props.users}
+                    previous={previous}
+                    next={next}
+                    isLast={isLast}
+                />
+            );
+        });
     } else {
         return <Alert bsStyle="warning">No chat logs</Alert>;
     }

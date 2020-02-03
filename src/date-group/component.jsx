@@ -14,10 +14,32 @@ import { NAME } from './constants';
 const Component = (props) => {
     const userGroups = props.dateGroup.logs.map((userGroup, index) => <UserGroup key={index} userGroup={userGroup} user={props.user} users={props.users} />);
 
+    const previousLink = props.previous
+        ? <a href={`#date-group-${props.previous.date}`}>&#8593;</a>
+        : null
+    ;
+
+    const nextLink = props.next
+        ? <a href={`#date-group-${props.next.date}`}>&#8595;</a>
+        : null
+    ;
+
+    const previousFromLast = props.isLast && previousLink
+        ? <div className="date"><a href={`#date-group-${props.dateGroup.date}`}>&#8593;</a></div>
+        : null
+    ;
+
     return (
         <div className="da-whatsapp-date-group">
-            <div className="date">{props.dateGroup.date}</div>
+            <div id={`date-group-${props.dateGroup.date}`} className="date">
+                {previousLink}
+                {' '}
+                {props.dateGroup.date}
+                {' '}
+                {nextLink}
+            </div>
             {userGroups}
+            {previousFromLast}
         </div>
     );
 };
