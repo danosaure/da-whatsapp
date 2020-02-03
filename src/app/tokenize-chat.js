@@ -2,11 +2,12 @@ import groupByDate from './group-by-date';
 import groupByUser from './group-by-user';
 
 const PARTS_REGEXP = /^\[(\d+\/\d+\/\d+), (\d+:\d+:\d+ ..)\] (.*?):\s+(.*)/;
+const SECOND_REGEXP = /^(\d+\/\d+\/\d+), (\d+:\d+ ..) - (.*?):\s+(.*)/;
 
 export default (chat) => {
     const tokens = chat.split('\n').reduce(
         (tokens, line) => {
-            const match = line.match(PARTS_REGEXP);
+            const match = line.match(PARTS_REGEXP) || line.match(SECOND_REGEXP);
             if (match) {
                 return tokens.concat({
                     date: match[1],
@@ -16,8 +17,14 @@ export default (chat) => {
                 });
             } else {
                 const last = tokens[tokens.length - 1];
-                last.message = [last.message, line].join('\n');
-                return tokens;
+                if (last) {
+                    last.message = [last.message, line].join('\n');
+                    return tokens;
+                } else {
+                    return tokens.concat({
+                        message: line
+                    });
+                }
             }
         },
         []

@@ -40,23 +40,37 @@ const actionCreators = Object.freeze({
 export const orchestrators = Object.freeze({
     fileSelected: (dispatch, file) => {
         dispatch(actionCreators.loading(true));
-        const fileReader = new FileReader();
-        fileReader.onloadend = (e) => {
-            const content = fileReader.result;
+        try {
+            if (file) {
+                const filename = file.name;
 
-            const tokens = tokenizeChat(content);
-            const users = usersFromTokens(tokens);
-            const count = countTokens(tokens);
+                const fileReader = new FileReader();
+                fileReader.onloadend = (e) => {
+                    const content = fileReader.result;
 
-            batch(() => {
-                dispatch(actionCreators.setContent(tokens));
-                dispatch(actionCreators.setUser(null));
-                dispatch(actionCreators.setUsers(users));
-                dispatch(actionCreators.setCount(count));
-                dispatch(actionCreators.loading(false));
-            });
-        };
-        fileReader.readAsText(file);
+                    const tokens = tokenizeChat(content);
+                    const users = usersFromTokens(tokens);
+                    const count = countTokens(tokens);
+
+                    batch(() => {
+                        dispatch(actionCreators.setContent(tokens));
+                        dispatch(actionCreators.setUser(null));
+                        dispatch(actionCreators.setUsers(users));
+                        dispatch(actionCreators.setCount(count));
+                    });
+                };
+                fileReader.readAsText(file);
+            } else {
+                batch(() => {
+                    dispatch(actionCreators.setContent([]));
+                    dispatch(actionCreators.setUser(null));
+                    dispatch(actionCreators.setUsers(null));
+                    dispatch(actionCreators.setCount(null));
+                });
+            }
+        } finally {
+            dispatch(actionCreators.loading(false));
+        }
     },
 
     userSelected: (dispatch, user) => {

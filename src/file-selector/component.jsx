@@ -22,7 +22,7 @@ const Component = (props) => {
             <Panel.Heading>WhatsApp chat log file</Panel.Heading>
             <Panel.Body>
                 {selectFilePrompt}
-                <FormControl type="file" accept=".txt" onChange={(e) => props.onChange(e.target.files[0])} />
+                <FormControl type="file" accept=".txt,.zip" onChange={(e) => props.onChange(e.target.files[0])} />
             </Panel.Body>
         </Panel>
     );
