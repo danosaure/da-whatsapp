@@ -45,7 +45,7 @@
     "bootstrap": "~3.4.1",
     "classnames": "~2.2.6",
     "immutable": "~3.8.2",
-    "jquery": "~3.4.1",
+    "jquery": "~3.5.0",
     "jszip": "^3.2.2",
     "less": "^3.10.3",
     "prop-types": "~15.7.2",
