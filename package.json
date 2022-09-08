@@ -46,7 +46,7 @@
     "classnames": "~2.2.6",
     "immutable": "~3.8.2",
     "jquery": "~3.4.1",
-    "jszip": "^3.2.2",
+    "jszip": "^3.7.0",
     "less": "^3.10.3",
     "prop-types": "~15.7.2",
     "react": "~16.12.0",
